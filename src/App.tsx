@@ -1,5 +1,10 @@
+import styled from "styled-components/macro";
+
 const App = () => {
-  return <div className="App">Guildfi Assignment</div>;
+  return <Wrapper>Guildfi Assignment</Wrapper>;
 };
 
+const Wrapper = styled.div`
+  background: red;
+`;
 export default App;
