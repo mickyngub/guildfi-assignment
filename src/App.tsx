@@ -1,10 +1,18 @@
 import styled from "styled-components/macro";
+import Navbar from "components/Navbar";
 
 const App = () => {
-  return <Wrapper>Guildfi Assignment</Wrapper>;
+  return (
+    <Wrapper>
+      <Navbar></Navbar>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
-  background: red;
+  min-height: 100%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 40px;
 `;
 export default App;
