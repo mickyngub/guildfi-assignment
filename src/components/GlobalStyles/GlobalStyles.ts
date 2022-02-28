@@ -1,5 +1,6 @@
 //using slightly modified version of Josh Comeau's global styles
 
+import { COLORS } from "../../constants";
 import { createGlobalStyle } from "styled-components/macro";
 
 const globalStyles = createGlobalStyle`
@@ -61,12 +62,12 @@ p, h1, h2, h3, h4, h5, h6 {
 
 
 html {
-    --color-primary: hsl(209deg 100% 20%);
-    --color-primary-dark: hsl(211deg 100% 12%);
-    --color-secondary: hsl(46deg 100% 50%);
-    --color-secondary-light: hsl(50deg 100% 52%);
-    --color-black: hsl(216deg 100% 4%);
-    --color-white: hsl(0deg 0% 100%);
+    --color-primary: ${COLORS.primary};
+    --color-primary-dark: ${COLORS.primaryDark};
+    --color-secondary: ${COLORS.secondary};
+    --color-secondary-light: ${COLORS.secondaryLight};
+    --color-black: ${COLORS.black};
+    --color-white:${COLORS.white};
 
 }
 
