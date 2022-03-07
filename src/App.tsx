@@ -1,10 +1,12 @@
 import styled from "styled-components/macro";
 import Navbar from "components/Navbar";
+import Map from "components/Map";
 
 const App = () => {
   return (
     <Wrapper>
-      <Navbar></Navbar>
+      <Navbar />
+      <Map />
     </Wrapper>
   );
 };
@@ -12,7 +14,6 @@ const App = () => {
 const Wrapper = styled.div`
   min-height: 100%;
   background: var(--color-primary);
-  color: var(--color-white);
   padding: 40px;
 `;
 export default App;
