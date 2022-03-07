@@ -1,17 +1,11 @@
 import { Suspense } from "react";
 import styled from "styled-components/macro";
-import { Html, useProgress } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { MapControls, OrbitControls, Stars } from "@react-three/drei";
 import useLoadTexture from "hooks/useLoadTexture";
-
-const Loader = () => {
-  const { progress } = useProgress();
-  console.log("progress is ", progress);
-  return <Html center>{progress} % loaded</Html>;
-};
+import ProgressBar from "components/ProgressBar/ProgressBar";
 
 // const Box = (props: JSX.IntrinsicElements["mesh"]) => {
 //   const mesh = useRef<THREE.Mesh>(null!);
@@ -43,7 +37,7 @@ const MapPlane = ({ map, ...props }: any) => {
   });
 
   return (
-    <mesh position={[0, 0, 0]}>
+    <mesh position={[0, 0, 0.001]}>
       <planeBufferGeometry args={[6.8, 6.8, 64, 64]} />
       <meshStandardMaterial
         ref={mesh}
@@ -140,7 +134,7 @@ const OverlayPlane = ({
       <mesh
         position={boxPosition}
         onPointerEnter={() => {
-          currentRef.current.position.z = 0.001;
+          currentRef.current.position.z = 0.0001;
         }}
         onPointerLeave={() => {
           currentRef.current.position.z = -0.1;
@@ -182,6 +176,15 @@ const CustomControls = ({ setDisplacementScale }: any) => {
 
         this.target.x = 0.8;
         camera.position.x = 0.8;
+      } else if (this.target.z < 2.5) {
+        zDifference = Math.abs(originalZ - camera.position.z);
+        // camera.up.set(0, 0, 1);
+        // camera.lookAt(0, zDifference * 0.5, 0);
+        camera.rotation.set(zDifference * 0.5, 0, 0);
+        // camera.ro
+
+        // camera.updateProjectionMatrix();
+        // console.log("zooming in...", zDifference);
       }
     });
   });
@@ -189,15 +192,21 @@ const CustomControls = ({ setDisplacementScale }: any) => {
   return (
     <OrbitControls
       ref={controlsRef}
-      enableRotate={false}
+      // enableRotate={false}
       enablePan={true}
+      enableDamping={true}
       mouseButtons={{
         LEFT: THREE.MOUSE.PAN,
         MIDDLE: THREE.MOUSE.DOLLY,
         RIGHT: THREE.MOUSE.ROTATE,
       }}
+      maxPolarAngle={Math.PI / 2}
+      maxAzimuthAngle={Math.PI / 2}
       maxDistance={2.5}
-      minDistance={0.8}
+      minDistance={1}
+      onChange={(event) => {
+        console.log("controlref");
+      }}
     />
   );
 };
@@ -219,7 +228,7 @@ const Map = () => {
           position: [0, 0, 2.5],
         }}
       >
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<ProgressBar />}>
           <pointLight intensity={3} position={[1, 1, 1]} color="#81a0e3" />
           <CustomControls />
           <MapPlane displacementScale={displacementScale} />
