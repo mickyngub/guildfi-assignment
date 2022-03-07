@@ -34,8 +34,9 @@ const OverlayPlane = ({
 }: any) => {
   const mesh = useRef<THREE.MeshStandardMaterial>(null!);
   useFrame((state, delta) => {
-    // let num = (mesh.current.displacementScale += 0.001);
-    // console.log(num);
+    mesh.current.displacementScale = -0.5 * state.camera.position.z + 1;
+    console.log("displacementScale ", mesh.current.displacementScale);
+    console.log("zIndex ", state.camera.position.z);
   });
 
   return (
@@ -82,11 +83,6 @@ const CustomControls = ({ setDisplacementScale }: any) => {
 
   return (
     <OrbitControls
-      onChange={(e) => {
-        console.log(e?.target.object.position.z);
-
-        // setDisplacementScale(e?.target.object.position.z - 2);
-      }}
       ref={controlsRef}
       enableRotate={false}
       enablePan={true}
@@ -144,19 +140,7 @@ const Map = () => {
       >
         <primitive object={new THREE.AxesHelper(10)} />
         <pointLight intensity={3} position={[1, 1, 1]} color="#81a0e3" />
-        {/* <ambientLight intensity={1} /> */}
-        {/* <OrbitControls /> */}
         <CustomControls />
-        {/* <MapControls
-          enableRotate={false}
-          enablePan={true}
-          mouseButtons={{
-            LEFT: THREE.MOUSE.PAN,
-            MIDDLE: THREE.MOUSE.DOLLY,
-            RIGHT: THREE.MOUSE.ROTATE,
-          }}
-          maxDistance={4}
-        /> */}
         <OverlayPlane
           map={terrain}
           displacementMap={terrainDepth}
