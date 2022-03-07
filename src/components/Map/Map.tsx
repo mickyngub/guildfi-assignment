@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import styled from "styled-components/macro";
 import * as THREE from "three";
-import { useRef, useState, useEffect } from "react";
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
-import { MapControls, OrbitControls, Stars } from "@react-three/drei";
+import { useRef, useState } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import useLoadTexture from "hooks/useLoadTexture";
 import ProgressBar from "components/ProgressBar/ProgressBar";
 
@@ -178,13 +178,8 @@ const CustomControls = ({ setDisplacementScale }: any) => {
         camera.position.x = 0.8;
       } else if (this.target.z < 2.5) {
         zDifference = Math.abs(originalZ - camera.position.z);
-        // camera.up.set(0, 0, 1);
-        // camera.lookAt(0, zDifference * 0.5, 0);
         camera.rotation.set(zDifference * 0.5, 0, 0);
-        // camera.ro
-
         // camera.updateProjectionMatrix();
-        // console.log("zooming in...", zDifference);
       }
     });
   });
@@ -192,7 +187,7 @@ const CustomControls = ({ setDisplacementScale }: any) => {
   return (
     <OrbitControls
       ref={controlsRef}
-      // enableRotate={false}
+      enableRotate={false}
       enablePan={true}
       enableDamping={true}
       mouseButtons={{
