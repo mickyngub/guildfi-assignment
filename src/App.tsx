@@ -31,6 +31,6 @@ const App = () => {
 const Wrapper = styled.div`
   min-height: 100%;
   background: var(--color-primary);
-  padding: 40px;
+  /* padding: 40px; */
 `;
 export default App;
