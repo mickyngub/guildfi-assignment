@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { ethers } from "ethers";
 import styled from "styled-components/macro";
 import Navbar from "components/Navbar";
@@ -20,7 +20,10 @@ const App = () => {
   return (
     <Wrapper>
       <Navbar />
-      {address && <Map />}
+      {/* {address && <Map />} */}
+      <Suspense fallback={null}>
+        <Map />
+      </Suspense>
     </Wrapper>
   );
 };
