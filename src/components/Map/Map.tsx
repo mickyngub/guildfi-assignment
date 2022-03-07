@@ -26,13 +26,7 @@ import { Vector3 } from "three";
 //   );
 // };
 
-const OverlayPlane = ({
-  map,
-  renderOrder = 0,
-  transparent = false,
-  boxPosition = [0, 0, 0.2],
-  ...props
-}: any) => {
+const MapPlane = ({ map, ...props }: any) => {
   const mesh = useRef<THREE.MeshStandardMaterial>(null!);
   useFrame((state, delta) => {
     mesh.current.displacementScale = -0.5 * state.camera.position.z + 1;
@@ -41,6 +35,21 @@ const OverlayPlane = ({
   });
 
   return (
+    <mesh position={[0, 0, 0]}>
+      <planeBufferGeometry args={[6.8, 6.8, 64, 64]} />
+      <meshStandardMaterial ref={mesh} map={map} {...props} />
+    </mesh>
+  );
+};
+
+const OverlayPlane = ({
+  map,
+  renderOrder = 0,
+  transparent = false,
+  boxPosition = [0, 0, 0.2],
+  ...props
+}: any) => {
+  return (
     <>
       <mesh position={boxPosition} renderOrder={renderOrder}>
         <boxGeometry args={[0.1, 0.1, 0.1]} />
@@ -48,12 +57,7 @@ const OverlayPlane = ({
       </mesh>
       <mesh position={[0, 0, 0]} renderOrder={renderOrder}>
         <planeBufferGeometry args={[6.8, 6.8, 64, 64]} />
-        <meshStandardMaterial
-          map={map}
-          ref={mesh}
-          transparent={transparent}
-          {...props}
-        />
+        <meshStandardMaterial map={map} transparent={transparent} {...props} />
       </mesh>
     </>
   );
@@ -148,7 +152,7 @@ const Map = () => {
         <primitive object={new THREE.AxesHelper(10)} />
         <pointLight intensity={3} position={[1, 1, 1]} color="#81a0e3" />
         <CustomControls />
-        <OverlayPlane
+        <MapPlane
           map={terrain}
           displacementMap={terrainDepth}
           displacementScale={displacementScale}
