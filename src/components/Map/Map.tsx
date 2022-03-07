@@ -1,7 +1,9 @@
 import React from "react";
+import styled from "styled-components/macro";
 import * as THREE from "three";
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 const Box = (props: JSX.IntrinsicElements["mesh"]) => {
   const mesh = useRef<THREE.Mesh>(null!);
@@ -25,13 +27,20 @@ const Box = (props: JSX.IntrinsicElements["mesh"]) => {
 
 const Map = () => {
   return (
-    <Canvas>
-      {React.createElement("ambientLight")};
-      <pointLight position={[10, 10, 10]} />
-      <Box position={[-1.2, 1, 1]} />
-      <Box position={[1.2, 0, 0]} />
-    </Canvas>
+    <MapWrapper>
+      <Canvas>
+        {/* {React.createElement("ambientLight")}; */}
+        <OrbitControls />
+        <pointLight position={[10, 10, 10]} />
+        <Box position={[-1.2, 1, 1]} />
+        <Box position={[1.2, 0, 0]} />
+      </Canvas>
+    </MapWrapper>
   );
 };
+
+const MapWrapper = styled.div`
+  height: 100vh;
+`;
 
 export default Map;
