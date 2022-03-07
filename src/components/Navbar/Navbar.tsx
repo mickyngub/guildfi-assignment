@@ -78,6 +78,7 @@ const Nav = styled.ul`
 
 const NavItem = styled.li`
   list-style: none;
+  cursor: pointer;
 `;
 
 const NavA = styled.a`
