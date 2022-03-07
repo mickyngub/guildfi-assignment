@@ -53,6 +53,8 @@ const Navbar = () => {
 const NavWrapper = styled.nav`
   max-height: 10%;
   position: fixed;
+  z-index: 1;
+  opacity: 0.6;
   top: 0;
   left: 0;
   width: 100%;
