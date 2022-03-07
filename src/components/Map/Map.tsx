@@ -30,6 +30,7 @@ const OverlayPlane = ({
   map,
   renderOrder = 0,
   transparent = false,
+  boxPosition = [0, 0, 0.2],
   ...props
 }: any) => {
   const mesh = useRef<THREE.MeshStandardMaterial>(null!);
@@ -40,15 +41,21 @@ const OverlayPlane = ({
   });
 
   return (
-    <mesh position={[0, 0, 0]} renderOrder={renderOrder}>
-      <planeBufferGeometry args={[6.8, 6.8, 64, 64]} />
-      <meshStandardMaterial
-        map={map}
-        ref={mesh}
-        transparent={transparent}
-        {...props}
-      />
-    </mesh>
+    <>
+      <mesh position={boxPosition} renderOrder={renderOrder}>
+        <boxGeometry args={[0.1, 0.1, 0.1]} />
+        <meshStandardMaterial color="red" />
+      </mesh>
+      <mesh position={[0, 0, 0]} renderOrder={renderOrder}>
+        <planeBufferGeometry args={[6.8, 6.8, 64, 64]} />
+        <meshStandardMaterial
+          map={map}
+          ref={mesh}
+          transparent={transparent}
+          {...props}
+        />
+      </mesh>
+    </>
   );
 };
 
@@ -146,15 +153,60 @@ const Map = () => {
           displacementMap={terrainDepth}
           displacementScale={displacementScale}
         />
-        <OverlayPlane map={ionia} renderOrder={1} transparent={true} />
-        <OverlayPlane map={demacia} renderOrder={1} transparent={true} />
-        <OverlayPlane map={bilgewater} renderOrder={1} transparent={true} />
-        <OverlayPlane map={shadowIsles} renderOrder={1} transparent={true} />
-        <OverlayPlane map={freljord} renderOrder={1} transparent={true} />
-        <OverlayPlane map={ixtal} renderOrder={1} transparent={true} />
-        <OverlayPlane map={noxus} renderOrder={1} transparent={true} />
-        <OverlayPlane map={shurima} renderOrder={1} transparent={true} />
-        <OverlayPlane map={targon} renderOrder={1} transparent={true} />
+        <OverlayPlane
+          map={ionia}
+          boxPosition={[1.75, 0.7, 0.1]}
+          renderOrder={1}
+          transparent={true}
+        />
+        <OverlayPlane
+          map={demacia}
+          boxPosition={[-1.4, 0.18, 0.05]}
+          renderOrder={1}
+          transparent={true}
+        />
+        <OverlayPlane
+          map={bilgewater}
+          boxPosition={[1.8, -0.6, 0.1]}
+          renderOrder={1}
+          transparent={true}
+        />
+        <OverlayPlane
+          map={shadowIsles}
+          boxPosition={[2.3, -1.3, 0.1]}
+          renderOrder={1}
+          transparent={true}
+        />
+        <OverlayPlane
+          map={freljord}
+          boxPosition={[-1.2, 0.9, 0.05]}
+          renderOrder={1}
+          transparent={true}
+        />
+        <OverlayPlane
+          map={ixtal}
+          boxPosition={[0.9, -1.1, 0.1]}
+          renderOrder={1}
+          transparent={true}
+        />
+        <OverlayPlane
+          map={noxus}
+          boxPosition={[-0.05, 0.4, 0.1]}
+          renderOrder={1}
+          transparent={true}
+        />
+        <OverlayPlane
+          map={shurima}
+          boxPosition={[0.2, -1.15, 0.1]}
+          renderOrder={1}
+          transparent={true}
+        />
+        <OverlayPlane
+          map={targon}
+          boxPosition={[-0.75, -1.25, 0.1]}
+          renderOrder={1}
+          transparent={true}
+        />
       </Canvas>
     </MapWrapper>
   );
