@@ -134,21 +134,28 @@ const OverlayPlane = ({
   boxPosition = [0, 0, 0.2],
   ...props
 }: any) => {
+  const currentRef = useRef<THREE.Mesh>(null!);
   return (
     <>
-      <mesh position={boxPosition}>
+      <mesh
+        position={boxPosition}
+        onPointerEnter={() => {
+          currentRef.current.position.z = 0.001;
+        }}
+        onPointerLeave={() => {
+          currentRef.current.position.z = -0.1;
+        }}
+      >
         <boxGeometry args={[0.1, 0.1, 0.1]} />
         <meshStandardMaterial color="red" />
       </mesh>
-      <mesh position={[0, 0, 0]} renderOrder={renderOrder}>
+      <mesh ref={currentRef} position={[0, 0, -0.1]} renderOrder={renderOrder}>
         <planeBufferGeometry args={[6.8, 6.8, 64, 64]} />
         <meshStandardMaterial map={map} transparent={transparent} {...props} />
       </mesh>
     </>
   );
 };
-
-const LoadTexture = () => {};
 
 const CustomControls = ({ setDisplacementScale }: any) => {
   const { camera } = useThree();
