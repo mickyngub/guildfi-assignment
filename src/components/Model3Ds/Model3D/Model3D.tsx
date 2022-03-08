@@ -1,13 +1,5 @@
-const Model3D = ({ obj, rotation, position, scale }: any) => {
-  return (
-    <primitive
-      object={obj}
-      scale={scale}
-      rotation={rotation}
-      position={position}
-      renderOrder={100}
-    />
-  );
+const Model3D = ({ ...props }: JSX.IntrinsicElements["primitive"]) => {
+  return <primitive {...props} renderOrder={100} />;
 };
 
 export default Model3D;
