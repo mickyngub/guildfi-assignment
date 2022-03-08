@@ -321,7 +321,7 @@ const Map = () => {
         }}
       >
         <Suspense fallback={<ProgressBar />}>
-          <pointLight intensity={3} position={[0, 0, 1]} color="#81a0e3" />
+          <pointLight intensity={3} position={[0, 0, 1]} color="#70839b" />
           <CustomControls />
           <MapPlane displacementScale={displacementScale} />
           <OverlayPlanes />
