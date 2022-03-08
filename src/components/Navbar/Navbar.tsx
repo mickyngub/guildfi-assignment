@@ -1,11 +1,15 @@
 import { useState } from "react";
 import styled from "styled-components/macro";
-import { Anchor, Aperture, HelpCircle, Volume2, VolumeX } from "react-feather";
+import { Volume2, VolumeX } from "react-feather";
 import VisuallyHidden from "components/VisuallyHidden";
+import { cryptomindLogo, guildfiLogo } from "assets";
 interface INavLists {
   name: string;
   link: string;
-  icon: React.ReactElement<any, any>;
+  icon: React.DetailedHTMLProps<
+    React.ImgHTMLAttributes<HTMLImageElement>,
+    HTMLImageElement
+  >;
   handleClickSound?: () => void;
 }
 
@@ -19,18 +23,13 @@ const Navbar = () => {
   const navLists: INavLists[] = [
     {
       name: "Guildfi",
-      link: "www.guildfi.com",
-      icon: <Anchor />,
+      link: "https://www.guildfi.com",
+      icon: <img src={guildfiLogo} alt="cryptomind logo" />,
     },
     {
       name: "Cryptomind",
       link: "https://cryptomind.group/",
-      icon: <Aperture />,
-    },
-    {
-      name: "Gala",
-      link: "https://app.gala.games/",
-      icon: <HelpCircle />,
+      icon: <img src={cryptomindLogo} alt="cryptomind logo" />,
     },
   ];
   return (
@@ -44,7 +43,7 @@ const Navbar = () => {
             </NavA>
           </NavItem>
         ))}
-        <NavItem onClick={handleClickSound}>{volumeComponent}</NavItem>
+        <NavVolume onClick={handleClickSound}>{volumeComponent}</NavVolume>
       </Nav>
     </NavWrapper>
   );
@@ -71,16 +70,21 @@ const Nav = styled.ul`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
+  gap: 4rem;
   @media ${(p) => p.theme.QUERIES.tabletAndBigger} {
     flex-direction: column;
     height: 100vh;
+    padding: 2rem 0;
   }
 `;
 
 const NavItem = styled.li`
   list-style: none;
   cursor: pointer;
+`;
+
+const NavVolume = styled(NavItem)`
+  margin-top: auto;
 `;
 
 const NavA = styled.a`
