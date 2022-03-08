@@ -7,7 +7,7 @@ const ProgressBar = () => {
   return (
     <Html center>
       <Wrapper className="container">
-        <Title>Loading</Title>
+        <Title>Loading...</Title>
         <ProgressContainer>
           <ProgressComplete style={{ width: `${progress}%` }}>
             <ProgressLiquid></ProgressLiquid>
@@ -39,7 +39,7 @@ const rAnimation = keyframes`
 `;
 
 const Wrapper = styled.div`
-  max-width: 500px;
+  width: 60vw;
   margin: 50px auto;
 `;
 

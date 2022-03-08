@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import Navbar from "components/Navbar";
 import Map from "components/Map";
 import ConnectPrompt from "components/ConnectPrompt";
+import { loadingBackground } from "assets";
 
 const App = () => {
   const [address, setAddress] = useState<string>("");
@@ -28,7 +29,11 @@ const App = () => {
 
 const Wrapper = styled.div`
   min-height: 100%;
-  background: var(--color-primary);
+  /* background: var(--color-primary); */
+  background: url(${loadingBackground});
+  background-repeat: no-repeat;
+  background-size: cover;
+
   /* padding: 40px; */
 `;
 export default App;
