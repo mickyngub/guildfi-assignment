@@ -7,26 +7,6 @@ import { OrbitControls } from "@react-three/drei";
 import ProgressBar from "components/ProgressBar/ProgressBar";
 import { useLoadOBJ, useLoadTexture } from "hooks";
 
-// const Box = (props: JSX.IntrinsicElements["mesh"]) => {
-//   const mesh = useRef<THREE.Mesh>(null!);
-//   const [hover, setHover] = useState<boolean>(false);
-//   const [active, setActive] = useState<boolean>(false);
-//   useFrame((state, delta) => (mesh.current.rotation.x += 0.01));
-//   return (
-//     <mesh
-//       {...props}
-//       ref={mesh}
-//       scale={active ? 2 : 1}
-//       onClick={(ev) => setActive((prev) => !prev)}
-//       onPointerOver={(ev) => setHover(true)}
-//       onPointerOut={(ev) => setHover(false)}
-//     >
-//       <boxGeometry args={[1, 1, 1]} />
-//       <meshStandardMaterial color={hover ? "deeppink" : "orange"} />
-//     </mesh>
-//   );
-// };
-
 const MapPlane = ({ map, ...props }: any) => {
   const mesh = useRef<THREE.MeshStandardMaterial>(null!);
   const { terrain, terrainDepth } = useLoadTexture();
@@ -80,12 +60,6 @@ const Model3Ds = () => {
         rotation={[1.6, 0, 0]}
         position={[1.05, -1.25, 0.1]}
       />
-      {/* <Model3D
-        obj={ixaocanGround}
-        scale={0.03}
-        rotation={[1.6, 0, 0]}
-        position={[1.03, -1.25, 0.1]}
-      /> */}
       <Model3D
         obj={theVoid}
         scale={0.06}
@@ -328,7 +302,6 @@ const Map = () => {
         <Suspense fallback={<ProgressBar />}>
           <pointLight intensity={3.5} position={[0, 0, 1]} color="#70839b" />
           <CustomControls />
-          <primitive object={new THREE.AxesHelper(10)} />
           <MapPlane displacementScale={displacementScale} />
           <OverlayPlanes />
           <Model3Ds />
