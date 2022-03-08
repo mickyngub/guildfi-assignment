@@ -4,11 +4,8 @@ import * as THREE from "three";
 import { useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import useLoadTexture from "hooks/useLoadTexture";
 import ProgressBar from "components/ProgressBar/ProgressBar";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
+import { useLoadOBJ, useLoadTexture } from "hooks";
 
 // const Box = (props: JSX.IntrinsicElements["mesh"]) => {
 //   const mesh = useRef<THREE.Mesh>(null!);
@@ -49,6 +46,39 @@ const MapPlane = ({ map, ...props }: any) => {
         {...props}
       />
     </mesh>
+  );
+};
+
+const Model3Ds = () => {
+  const {
+    sunDisc,
+    mountTargon,
+    demaciaLandmark,
+    placidium,
+    theVoid,
+    ixaocan,
+    ixaocanOrbs,
+    ixaocanGround,
+    immortalBastion,
+  } = useLoadOBJ();
+  return (
+    <Model3D
+      obj={sunDisc}
+      scale={0.04}
+      rotation={[1.3, 0, 0]}
+      position={[0.05, -1.28, 0.1]}
+    />
+  );
+};
+
+const Model3D = ({ obj, rotation, position, scale }: any) => {
+  return (
+    <primitive
+      object={obj}
+      scale={scale}
+      rotation={rotation}
+      position={position}
+    />
   );
 };
 
@@ -209,21 +239,6 @@ const CustomControls = ({ setDisplacementScale }: any) => {
   );
 };
 
-const SunDisc = () => {
-  const obj = useLoader(OBJLoader, "sun-disc.obj");
-  const wrapper = useLoader(TextureLoader, "sun-disc.jpg");
-  return (
-    <mesh>
-      <primitive
-        object={obj}
-        scale={0.04}
-        rotation={[1.3, 0, 0]}
-        position={[0.05, -1.28, 0.1]}
-      />
-    </mesh>
-  );
-};
-
 const Map = () => {
   // let vector = new THREE.Vector3();
   // vector.x = 0;
@@ -244,9 +259,9 @@ const Map = () => {
         <Suspense fallback={<ProgressBar />}>
           <pointLight intensity={3} position={[0, 0, 1]} color="#81a0e3" />
           <CustomControls />
-          <SunDisc />
           <MapPlane displacementScale={displacementScale} />
           <OverlayPlanes />
+          <Model3Ds />
         </Suspense>
       </Canvas>
     </MapWrapper>
