@@ -3,7 +3,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
-const CustomControls = ({ setDisplacementScale }: any) => {
+const CustomControls = () => {
   const { camera } = useThree();
   const controlsRef: any = useRef();
   let originalZ = 2.5;

@@ -1,10 +1,8 @@
-import { Suspense, useEffect } from "react";
 import styled from "styled-components/macro";
-import { useRef, useState } from "react";
+import { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 
 import ProgressBar from "components/ProgressBar/ProgressBar";
-import { useLoadOBJ, useLoadTexture } from "hooks";
 import OverlayPlanes from "components/OverlayPlanes";
 import MapPlane from "components/MapPlane";
 import Model3Ds from "components/Model3Ds";

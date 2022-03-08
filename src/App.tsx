@@ -20,8 +20,7 @@ const App = () => {
   return (
     <Wrapper>
       <Navbar />
-      {/* {address && <Map />} */}
-      <Map />
+      {address && <Map />}
     </Wrapper>
   );
 };

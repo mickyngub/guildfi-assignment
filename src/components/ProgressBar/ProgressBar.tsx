@@ -1,4 +1,3 @@
-import React from "react";
 import styled, { keyframes } from "styled-components/macro";
 import { Html, useProgress } from "@react-three/drei";
 
