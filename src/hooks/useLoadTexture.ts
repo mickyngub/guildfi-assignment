@@ -14,6 +14,16 @@ const useLoadTexture = () => {
     noxus,
     shurima,
     targon,
+    iconBilgewater,
+    iconDemacia,
+    iconFreljord,
+    iconIonia,
+    iconIxtal,
+    iconNoxus,
+    iconPiltoverZaun,
+    iconShadowIsles,
+    iconShurima,
+    iconTargon,
   ] = useLoader(TextureLoader, [
     "terrain_z1.jpg",
     "depth_z1.jpg",
@@ -26,6 +36,16 @@ const useLoadTexture = () => {
     "overlay_noxus.png",
     "overlay_shurima.png",
     "overlay_targon.png",
+    "icon_bilgewater.png",
+    "icon_demacia.png",
+    "icon_freljord.png",
+    "icon_ionia.png",
+    "icon_ixtal.png",
+    "icon_noxus.png",
+    "icon_piltover-zaun.png",
+    "icon_shadow-isles.png",
+    "icon_shurima.png",
+    "icon_targon.png",
   ]);
 
   return {
@@ -40,6 +60,16 @@ const useLoadTexture = () => {
     noxus,
     shurima,
     targon,
+    iconBilgewater,
+    iconDemacia,
+    iconFreljord,
+    iconIonia,
+    iconIxtal,
+    iconNoxus,
+    iconPiltoverZaun,
+    iconShadowIsles,
+    iconShurima,
+    iconTargon,
   };
 };
 
