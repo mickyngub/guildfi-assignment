@@ -12,6 +12,7 @@ const useLoadOBJ = () => {
     ixaocanOrbs,
     ixaocanGround,
     immortalBastion,
+    frostguard,
   ] = useLoader(OBJLoader, [
     "sun-disc.obj",
     "mount-targon.obj",
@@ -22,6 +23,7 @@ const useLoadOBJ = () => {
     "ixaocan_orbs.obj",
     "ixaocan_ground.obj",
     "immortal-bastion.obj",
+    "frostguard.obj",
   ]);
   return {
     sunDisc,
@@ -33,6 +35,7 @@ const useLoadOBJ = () => {
     ixaocanOrbs,
     ixaocanGround,
     immortalBastion,
+    frostguard,
   };
 };
 
