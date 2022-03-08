@@ -7,26 +7,7 @@ import { OrbitControls } from "@react-three/drei";
 import ProgressBar from "components/ProgressBar/ProgressBar";
 import { useLoadOBJ, useLoadTexture } from "hooks";
 import OverlayPlanes from "components/OverlayPlanes";
-
-const MapPlane = ({ map, ...props }: any) => {
-  const mesh = useRef<THREE.MeshStandardMaterial>(null!);
-  const { terrain, terrainDepth } = useLoadTexture();
-  useFrame((state) => {
-    mesh.current.displacementScale = -0.5 * state.camera.position.z + 1;
-  });
-
-  return (
-    <mesh position={[0, 0, 0.001]}>
-      <planeBufferGeometry args={[6.8, 6.8, 64, 64]} />
-      <meshStandardMaterial
-        ref={mesh}
-        map={terrain}
-        displacementMap={terrainDepth}
-        {...props}
-      />
-    </mesh>
-  );
-};
+import MapPlane from "components/MapPlane";
 
 const Model3Ds = () => {
   const {
