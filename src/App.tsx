@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import styled from "styled-components/macro";
 import Navbar from "components/Navbar";
 import Map from "components/Map";
+import ConnectPrompt from "components/ConnectPrompt";
 
 const App = () => {
   const [address, setAddress] = useState<string>("");
@@ -20,7 +21,7 @@ const App = () => {
   return (
     <Wrapper>
       <Navbar />
-      {address && <Map />}
+      {address ? <Map /> : <ConnectPrompt />}
     </Wrapper>
   );
 };
