@@ -24,6 +24,8 @@ const useLoadTexture = () => {
     iconShadowIsles,
     iconShurima,
     iconTargon,
+    clouds,
+    loadingBackground,
   ] = useLoader(TextureLoader, [
     "terrain_z1.jpg",
     "depth_z1.jpg",
@@ -46,6 +48,8 @@ const useLoadTexture = () => {
     "icon_shadow-isles.png",
     "icon_shurima.png",
     "icon_targon.png",
+    "clouds.jpg",
+    "loading-background.jpg",
   ]);
 
   return {
@@ -70,6 +74,8 @@ const useLoadTexture = () => {
     iconShadowIsles,
     iconShurima,
     iconTargon,
+    clouds,
+    loadingBackground,
   };
 };
 
