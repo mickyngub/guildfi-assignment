@@ -30,10 +30,8 @@ import { useLoadOBJ, useLoadTexture } from "hooks";
 const MapPlane = ({ map, ...props }: any) => {
   const mesh = useRef<THREE.MeshStandardMaterial>(null!);
   const { terrain, terrainDepth } = useLoadTexture();
-  useFrame((state, delta) => {
+  useFrame((state) => {
     mesh.current.displacementScale = -0.5 * state.camera.position.z + 1;
-    // console.log("displacementScale ", mesh.current.displacementScale);
-    // console.log("zIndex ", state.camera.position.z);
   });
 
   return (
@@ -271,21 +269,16 @@ const CustomControls = ({ setDisplacementScale }: any) => {
   useEffect(() => {
     console.log("attached useEffect");
     controlsRef.current.addEventListener("change", function (this: any) {
-      if (this.target.y < -1.5) {
-        this.target.y = -1.5;
-        camera.position.y = -1.5;
+      if (this.target.y < -1.8) {
+        this.target.y = -1.8;
+        camera.position.y = -1.8;
       } else if (this.target.y > 0.8) {
         this.target.y = 0.8;
         camera.position.y = 0.8;
       } else if (this.target.x < -0.8) {
-        zDifference = Math.abs(originalZ - camera.position.z);
-        console.log("zDiff -", zDifference);
         this.target.x = -0.8;
         camera.position.x = -0.8;
       } else if (this.target.x > 0.8) {
-        zDifference = Math.abs(originalZ - camera.position.z);
-        console.log("zDiff +", zDifference);
-
         this.target.x = 0.8;
         camera.position.x = 0.8;
       }
@@ -297,7 +290,6 @@ const CustomControls = ({ setDisplacementScale }: any) => {
       if (this.target.z < 2.5) {
         zDifference = Math.abs(originalZ - camera.position.z);
         camera.rotation.set(zDifference * 0.5, 0, 0);
-        // camera.updateProjectionMatrix();
       }
     });
   });
@@ -316,18 +308,11 @@ const CustomControls = ({ setDisplacementScale }: any) => {
       maxAzimuthAngle={Math.PI / 2}
       maxDistance={2.5}
       minDistance={1}
-      onChange={(event) => {
-        console.log("controlref");
-      }}
     />
   );
 };
 
 const Map = () => {
-  // let vector = new THREE.Vector3();
-  // vector.x = 0;
-  // vector.y = 1;
-  // vector.z = 0;
   const [displacementScale, setDisplacementScale] = useState<Number>(0);
 
   return (
@@ -341,8 +326,9 @@ const Map = () => {
         }}
       >
         <Suspense fallback={<ProgressBar />}>
-          <pointLight intensity={3} position={[0, 0, 1]} color="#70839b" />
+          <pointLight intensity={3.5} position={[0, 0, 1]} color="#70839b" />
           <CustomControls />
+          <primitive object={new THREE.AxesHelper(10)} />
           <MapPlane displacementScale={displacementScale} />
           <OverlayPlanes />
           <Model3Ds />
