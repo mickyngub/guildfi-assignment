@@ -9,8 +9,6 @@ import Model3Ds from "components/Model3Ds";
 import CustomControls from "components/CustomControls";
 
 const Map = () => {
-  const [displacementScale, setDisplacementScale] = useState<Number>(0);
-
   return (
     <MapWrapper>
       <Canvas
@@ -24,7 +22,7 @@ const Map = () => {
         <Suspense fallback={<ProgressBar />}>
           <pointLight intensity={3.5} position={[0, 0, 1]} color="#70839b" />
           <CustomControls />
-          <MapPlane displacementScale={displacementScale} />
+          <MapPlane />
           <OverlayPlanes />
           <Model3Ds />
         </Suspense>
