@@ -6,6 +6,9 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import useLoadTexture from "hooks/useLoadTexture";
 import ProgressBar from "components/ProgressBar/ProgressBar";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 // const Box = (props: JSX.IntrinsicElements["mesh"]) => {
 //   const mesh = useRef<THREE.Mesh>(null!);
@@ -159,9 +162,9 @@ const CustomControls = ({ setDisplacementScale }: any) => {
 
   useFrame(() => {
     controlsRef.current.addEventListener("change", function (this: any) {
-      if (this.target.y < -0.8) {
-        this.target.y = -0.8;
-        camera.position.y = -0.8;
+      if (this.target.y < -1.5) {
+        this.target.y = -1.5;
+        camera.position.y = -1.5;
       } else if (this.target.y > 0.8) {
         this.target.y = 0.8;
         camera.position.y = 0.8;
@@ -206,6 +209,21 @@ const CustomControls = ({ setDisplacementScale }: any) => {
   );
 };
 
+const SunDisc = () => {
+  const obj = useLoader(OBJLoader, "sun-disc.obj");
+  const wrapper = useLoader(TextureLoader, "sun-disc.jpg");
+  return (
+    <mesh>
+      <primitive
+        object={obj}
+        scale={0.04}
+        rotation={[1.3, 0, 0]}
+        position={[0.05, -1.28, 0.1]}
+      />
+    </mesh>
+  );
+};
+
 const Map = () => {
   // let vector = new THREE.Vector3();
   // vector.x = 0;
@@ -224,8 +242,9 @@ const Map = () => {
         }}
       >
         <Suspense fallback={<ProgressBar />}>
-          <pointLight intensity={3} position={[1, 1, 1]} color="#81a0e3" />
+          <pointLight intensity={3} position={[0, 0, 1]} color="#81a0e3" />
           <CustomControls />
+          <SunDisc />
           <MapPlane displacementScale={displacementScale} />
           <OverlayPlanes />
         </Suspense>
