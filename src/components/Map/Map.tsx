@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import styled from "styled-components/macro";
 import * as THREE from "three";
 import { useRef, useState } from "react";
@@ -190,7 +190,8 @@ const CustomControls = ({ setDisplacementScale }: any) => {
   let originalZ = 2.5;
   let zDifference;
 
-  useFrame(() => {
+  useEffect(() => {
+    console.log("attached useEffect");
     controlsRef.current.addEventListener("change", function (this: any) {
       if (this.target.y < -1.5) {
         this.target.y = -1.5;
@@ -209,7 +210,13 @@ const CustomControls = ({ setDisplacementScale }: any) => {
 
         this.target.x = 0.8;
         camera.position.x = 0.8;
-      } else if (this.target.z < 2.5) {
+      }
+    });
+  }, []);
+
+  useFrame(() => {
+    controlsRef.current.addEventListener("change", function (this: any) {
+      if (this.target.z < 2.5) {
         zDifference = Math.abs(originalZ - camera.position.z);
         camera.rotation.set(zDifference * 0.5, 0, 0);
         // camera.updateProjectionMatrix();
@@ -222,7 +229,6 @@ const CustomControls = ({ setDisplacementScale }: any) => {
       ref={controlsRef}
       enableRotate={false}
       enablePan={true}
-      enableDamping={true}
       mouseButtons={{
         LEFT: THREE.MOUSE.PAN,
         MIDDLE: THREE.MOUSE.DOLLY,
