@@ -2234,6 +2234,11 @@
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
 
+"@types/howler@*":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@types/howler/-/howler-2.2.5.tgz#54c37f28638c8e4440b7277bc609697a3248d220"
+  integrity sha512-kSB5iiUfZXLeyAJZLMZRqnlx7BPme4ub1UE0x/iRTqLRDZ/vG4JO41gyd0NnpXm+ZpB/6xwPix2Q+jtsZPzZmg==
+
 "@types/html-minifier-terser@^6.0.0":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz#4fc33a00c1d0c16987b1a20cf92d20614c55ac35"
@@ -2333,6 +2338,14 @@
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.11.tgz#e1eadc3c5e86bdb5f7684e00274ae228e7bcc466"
   integrity sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==
   dependencies:
+    "@types/react" "*"
+
+"@types/react-howler@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@types/react-howler/-/react-howler-5.2.0.tgz#7be9b05350b3e52e435370065cae795d363834f0"
+  integrity sha512-KyJTU/TjL/5RdnNgd02YZtP8ucJ9UsIXtvXIg66lGo9ECgIQXR8OZVQQm8/gAjOFLFjT7PClPOAzITn3Ap+Olw==
+  dependencies:
+    "@types/howler" "*"
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^17.0.39":
@@ -5189,6 +5202,11 @@ hoopy@^0.1.4:
   resolved "https://registry.yarnpkg.com/hoopy/-/hoopy-0.1.4.tgz#609207d661100033a9a9402ad3dea677381c1b1d"
   integrity sha512-HRcs+2mr52W0K+x8RzcLzuPPmVIKMSv97RGHy0Ea9y/mpcaK+xTrjICA04KAHi4GRzxliNqNJEFYWHghy3rSfQ==
 
+howler@^2.2.0:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/howler/-/howler-2.2.3.tgz#a2eff9b08b586798e7a2ee17a602a90df28715da"
+  integrity sha512-QM0FFkw0LRX1PR8pNzJVAY25JhIWvbKMBFM4gqk+QdV+kPXOhleWGCB6AiAF/goGjIHK2e/nIElplvjQwhr0jg==
+
 hpack.js@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/hpack.js/-/hpack.js-2.1.6.tgz#87774c0949e513f42e84575b3c45681fade2a0b2"
@@ -7645,7 +7663,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.0, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.6, prop-types@^15.6.0, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -7790,6 +7808,14 @@ react-feather@^2.0.9:
   integrity sha512-yMfCGRkZdXwIs23Zw/zIWCJO3m3tlaUvtHiXlW+3FH7cIT6fiK1iJ7RJWugXq7Fso8ZaQyUm92/GOOHXvkiVUw==
   dependencies:
     prop-types "^15.7.2"
+
+react-howler@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-howler/-/react-howler-5.2.0.tgz#fceef108f7c691f570155afee1c1436265218219"
+  integrity sha512-oDK+zML0MHf3nVNM4lMxh+re87NDa7fHowea2WK8197yqnMiZfPVHoMXtfb/PtuoOsWLO06vmEAtovwTRWpTFg==
+  dependencies:
+    howler "^2.2.0"
+    prop-types "^15.5.6"
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

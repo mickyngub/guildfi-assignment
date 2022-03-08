@@ -1,4 +1,6 @@
-import { useRef } from "react";
+import { Html } from "@react-three/drei";
+import { useState, useRef } from "react";
+import ReactHowler from "react-howler";
 
 const OverlayPlane = ({
   map,
@@ -8,16 +10,25 @@ const OverlayPlane = ({
   icon,
   ...props
 }: any) => {
+  const [isHover, setIsHover] = useState<boolean>(false);
   const currentRef = useRef<THREE.Mesh>(null!);
   return (
     <>
+      <Html>
+        <ReactHowler
+          src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/universe-map/en_US/58c9aeb77ffc8ea44a3d723fd2e0ccc964f3444b/assets/assets/audio/sfx-ui-hover-regions-01.mp3"
+          playing={isHover}
+        />
+      </Html>
       <mesh
         position={boxPosition}
         onPointerEnter={() => {
           currentRef.current.position.z = 0.0001;
+          setIsHover(true);
         }}
         onPointerLeave={() => {
           currentRef.current.position.z = -0.1;
+          setIsHover(false);
         }}
       >
         <circleGeometry args={[0.1, 32]} />

@@ -13,8 +13,6 @@ const App = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner();
-      // console.log("provider", provider.getSigner());
-      // console.log("signer is", await signer.getAddress());
       let signerAddress = await signer.getAddress();
       setAddress(signerAddress);
     })();
@@ -29,11 +27,8 @@ const App = () => {
 
 const Wrapper = styled.div`
   min-height: 100%;
-  /* background: var(--color-primary); */
   background: url(${loadingBackground});
   background-repeat: no-repeat;
   background-size: cover;
-
-  /* padding: 40px; */
 `;
 export default App;

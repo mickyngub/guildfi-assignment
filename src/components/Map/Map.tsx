@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-
+import ReactHowler from "react-howler";
 import ProgressBar from "components/ProgressBar/ProgressBar";
 import OverlayPlanes from "components/OverlayPlanes";
 import MapPlane from "components/MapPlane";
@@ -11,6 +11,14 @@ import CustomControls from "components/CustomControls";
 const Map = () => {
   return (
     <MapWrapper>
+      <ReactHowler
+        src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/universe-map/en_US/58c9aeb77ffc8ea44a3d723fd2e0ccc964f3444b/assets/assets/audio/sfx-ui-click-firstclick-01.mp3"
+        playing={true}
+      />
+      <ReactHowler
+        src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/universe-map/en_US/58c9aeb77ffc8ea44a3d723fd2e0ccc964f3444b/assets/assets/audio/sfx-trans-intro-01.mp3"
+        playing={true}
+      />
       <Canvas
         camera={{
           fov: 75,

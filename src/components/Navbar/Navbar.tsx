@@ -19,6 +19,7 @@ const Navbar = () => {
 
   const handleClickSound = () => {
     setClickSound((prev) => !prev);
+    window.Howler.mute(!clickSound);
   };
   const navLists: INavLists[] = [
     {
