@@ -6,6 +6,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import ProgressBar from "components/ProgressBar/ProgressBar";
 import { useLoadOBJ, useLoadTexture } from "hooks";
+import OverlayPlanes from "components/OverlayPlanes";
 
 const MapPlane = ({ map, ...props }: any) => {
   const mesh = useRef<THREE.MeshStandardMaterial>(null!);
@@ -109,128 +110,6 @@ const Model3D = ({ obj, rotation, position, scale }: any) => {
       position={position}
       renderOrder={100}
     />
-  );
-};
-
-const OverlayPlanes = () => {
-  const {
-    ionia,
-    demacia,
-    bilgewater,
-    freljord,
-    ixtal,
-    noxus,
-    shadowIsles,
-    shurima,
-    targon,
-    iconBilgewater,
-    iconDemacia,
-    iconFreljord,
-    iconIonia,
-    iconIxtal,
-    iconNoxus,
-    iconPiltoverZaun,
-    iconShadowIsles,
-    iconShurima,
-    iconTargon,
-  } = useLoadTexture();
-  return (
-    <>
-      <OverlayPlane
-        map={ionia}
-        icon={iconIonia}
-        boxPosition={[1.75, 0.7, 0.1]}
-        renderOrder={1}
-        transparent={true}
-      />
-      <OverlayPlane
-        map={demacia}
-        icon={iconDemacia}
-        boxPosition={[-1.4, 0.18, 0.05]}
-        renderOrder={1}
-        transparent={true}
-      />
-      <OverlayPlane
-        map={bilgewater}
-        icon={iconBilgewater}
-        boxPosition={[1.8, -0.6, 0.1]}
-        renderOrder={1}
-        transparent={true}
-      />
-      <OverlayPlane
-        map={shadowIsles}
-        icon={iconShadowIsles}
-        boxPosition={[2.3, -1.3, 0.1]}
-        renderOrder={1}
-        transparent={true}
-      />
-      <OverlayPlane
-        map={freljord}
-        icon={iconFreljord}
-        boxPosition={[-1.2, 0.9, 0.05]}
-        renderOrder={1}
-        transparent={true}
-      />
-      <OverlayPlane
-        map={ixtal}
-        icon={iconIxtal}
-        boxPosition={[0.9, -1.1, 0.1]}
-        renderOrder={1}
-        transparent={true}
-      />
-      <OverlayPlane
-        map={noxus}
-        icon={iconNoxus}
-        boxPosition={[-0, 0.55, 0.1]}
-        renderOrder={1}
-        transparent={true}
-      />
-      <OverlayPlane
-        map={shurima}
-        icon={iconShurima}
-        boxPosition={[0.2, -1.15, 0.1]}
-        renderOrder={1}
-        transparent={true}
-      />
-      <OverlayPlane
-        map={targon}
-        icon={iconTargon}
-        boxPosition={[-0.75, -1.25, 0.1]}
-        renderOrder={1}
-        transparent={true}
-      />
-    </>
-  );
-};
-
-const OverlayPlane = ({
-  map,
-  renderOrder = 0,
-  transparent = false,
-  boxPosition = [0, 0, 0.2],
-  icon,
-  ...props
-}: any) => {
-  const currentRef = useRef<THREE.Mesh>(null!);
-  return (
-    <>
-      <mesh
-        position={boxPosition}
-        onPointerEnter={() => {
-          currentRef.current.position.z = 0.0001;
-        }}
-        onPointerLeave={() => {
-          currentRef.current.position.z = -0.1;
-        }}
-      >
-        <circleGeometry args={[0.1, 32]} />
-        <meshStandardMaterial map={icon} />
-      </mesh>
-      <mesh ref={currentRef} position={[0, 0, -0.1]} renderOrder={renderOrder}>
-        <planeBufferGeometry args={[6.8, 6.8, 64, 64]} />
-        <meshStandardMaterial map={map} transparent={transparent} {...props} />
-      </mesh>
-    </>
   );
 };
 
