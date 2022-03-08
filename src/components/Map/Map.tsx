@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import ReactHowler from "react-howler";
 import ProgressBar from "components/ProgressBar/ProgressBar";
@@ -28,7 +28,7 @@ const Map = () => {
         }}
       >
         <Suspense fallback={<ProgressBar />}>
-          <pointLight intensity={3.5} position={[0, 0, 1]} color="#70839b" />
+          <pointLight intensity={0.5} position={[0, 0, 1]} />
           <CustomControls />
           <MapPlane />
           <OverlayPlanes />
